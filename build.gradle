@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.1'
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'org.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    runtimeOnly 'com.mysql:mysql-connector-j' // mysql용 jdbc 구현체
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // jpa문법 사용을 위한 hibernate 라이브러리
+    compileOnly 'org.projectlombok:lombok' // 롬북
+    annotationProcessor 'org.projectlombok:lombok' // 코드 만드는 롬북
+    implementation 'org.springframework.boot:spring-boot-starter-security' // 스프링용
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE' // 타임리프용, 스프링 5버전은 좀 다름
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.1.1'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
+    implementation 'io.jsonwebtoken:jjwt-gson:0.12.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.12.5'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
